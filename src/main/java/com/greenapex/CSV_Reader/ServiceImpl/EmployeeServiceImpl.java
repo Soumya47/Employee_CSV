@@ -48,8 +48,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Map<String, Integer> csvToDB(MultipartFile file) {
         Map<String, Integer> result = new HashMap<>();
         try {
-            String[] HEADERs = {"Id", "Name", "Age", "Country"};
-            List<EmployeeModel> employeeModelList = new ArrayList<>();
             InputStream inputStream = file.getInputStream();
             CsvParserSettings settings = new CsvParserSettings();
             settings.setHeaderExtractionEnabled(true);

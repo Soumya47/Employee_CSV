@@ -2,6 +2,7 @@ package com.greenapex.CSV_Reader.Controller;
 
 import com.greenapex.CSV_Reader.Model.EmployeeModel;
 import com.greenapex.CSV_Reader.Service.EmployeeService;
+import com.greenapex.CSV_Reader.ServiceImpl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +24,6 @@ public class EmployeeController {
     public Map<String, Integer> upsertRecords(@RequestParam("file") MultipartFile file) throws Exception {
         if (employeeService.hasCSVFormat(file)) {
             try {
-
                 System.out.println("Uploaded the file successfully: " + file.getOriginalFilename());
                 return employeeService.csvToDB(file);
             } catch (Exception e) {
@@ -39,6 +39,6 @@ public class EmployeeController {
     @GetMapping("/fetchById")
     public ResponseEntity<Object> getEmpById(@RequestParam Long id) {
         EmployeeModel emp = employeeService.findById(id);
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(emp);
+        return ResponseEntity.status(HttpStatus.OK).body(emp);
     }
 }
